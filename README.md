@@ -1,5 +1,7 @@
 # wemark - 微信小程序Markdown渲染库
 
+![wemark](./screenshot.jpg)
+
 ## 背景和功能
 
 用于在小程序中渲染Markdown文本。
