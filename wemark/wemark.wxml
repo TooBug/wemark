@@ -1,0 +1,15 @@
+<template name="wemark">
+
+<view class="wemark_wrapper">
+<block wx:for="{{renderList}}" wx:key="blockIndex" wx:for-index="blockIndex" wx:for-item="renderBlock">
+	<view class="wemark_block_{{renderBlock.type}}">
+		<block wx:if="{{renderBlock.content.push}}" wx:for="{{renderBlock.content}}" wx:key="inlineIndex" wx:for-index="inlineIndex" wx:for-item="renderInline">
+			<text class="wemark_inline_{{renderInline.type}}" wx:if="{{renderInline.type === 'text' || renderInline.type === 'code' || renderInline.type === 'strong' || renderInline.type === 'em' || renderInline.type === 'table_th' || renderInline.type === 'table_td'}}">{{renderInline.content}}</text>
+			<image bindload="wemarkFixImageHeight" data-id="{{blockIndex + '-' + inlineIndex}}" class="wemark_inline_image" style="height:{{imageHeight[blockIndex + '-' + inlineIndex]}}px" src="{{renderInline.src}}" wx:if="{{renderInline.type === 'image'}}"></image>
+		</block>
+		<view wx:if="{{!renderBlock.content.push}}">{{renderBlock.content}}</view>
+	</view>
+</block>
+</view>
+
+</template>
