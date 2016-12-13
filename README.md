@@ -46,7 +46,7 @@ page({
 
 ```html
 // data中的参数和上方确定的数据名称保持一致
-<tempalte is="wemark" data="{{...wemark}}"></tempalte>
+<template is="wemark" data="{{...wemark}}"></template>
 ```
 
 ### 实例
