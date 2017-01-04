@@ -1,5 +1,7 @@
 var Remarkable = require('./remarkable');
-var parser = new Remarkable();
+var parser = new Remarkable({
+	html: true
+});
 
 function parse(md, page, options){
 
@@ -33,34 +35,51 @@ function parse(md, page, options){
 	// 获取inline内容
 	var getInlineContent = function(inlineToken){
 		var ret = [];
-		// console.log('inlineToken', inlineToken);
 		var env;
-		inlineToken.children.forEach(function(token, index){
-			if(['text', 'code'].indexOf(token.type) > -1){
-				ret.push({
-					type: env || token.type,
-					content: token.content
-				});
-				env = '';
-			}else if(token.type === 'strong_open'){
-				env = 'strong';
-			}else if(token.type === 'em_open'){
-				env = 'em';
-			}else if(token.type === 'image'){
-				ret.push({
-					type: token.type,
-					src: token.src
-				});
-			}
-		});
+
+		if(inlineToken.type === 'htmlblock'){
+			var src = inlineToken.content.match(/src="(.*)"/)[1];
+
+			ret.push({
+				type: inlineToken.type,
+				src: src
+			});
+
+			return ret;
+		}else{
+			inlineToken.children.forEach(function(token, index){
+				if(['text', 'code'].indexOf(token.type) > -1){
+					ret.push({
+						type: env || token.type,
+						content: token.content
+					});
+					env = '';
+				}else if(token.type === 'strong_open'){
+					env = 'strong';
+				}else if(token.type === 'em_open'){
+					env = 'em';
+				}else if(token.type === 'image'){
+					ret.push({
+						type: token.type,
+						src: token.src
+					});
+				}
+			});
+		}
+
 		return ret;
 	};
 
 	var getBlockContent = function(blockToken, index){
-		if(blockToken.type === 'heading_open'){
+		if(blockToken.type === 'htmlblock'){
+			return {
+				type: 'htmlblock',
+				content: getInlineContent(blockToken)
+			}
+		}else if(blockToken.type === 'heading_open'){
 			return {
 				type: 'h' + blockToken.hLevel,
-				content: getInlineContent(tokens[index+1])
+				src: getInlineContent(tokens[index+1])
 			};
 		}else if(blockToken.type === 'paragraph_open'){
 			var type = 'p';
