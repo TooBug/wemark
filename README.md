@@ -1,5 +1,8 @@
 # wemark - 微信小程序Markdown渲染库
 
+[![Travis](https://img.shields.io/travis/TooBug/wemark/master.svg)](https://travis-ci.org/TooBug/wemark)
+![MIT](https://img.shields.io/badge/LICENSE-MIT-green.svg)
+
 ![wemark](./screenshot.jpg)
 
 ## 背景和功能
