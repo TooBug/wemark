@@ -65,7 +65,7 @@ Page({
 	},
 	onReady: function(){
 		wemark.parse(md, this, {
-			imageWidth: wx.getSystemInfoSync().device.windowWidth - 40,
+			imageWidth: wx.getSystemInfoSync().windowWidth - 40,
 			name: 'wemark'
 		})
 	}
