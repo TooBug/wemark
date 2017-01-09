@@ -79,7 +79,7 @@ function parse(md, page, options){
 		}else if(blockToken.type === 'heading_open'){
 			return {
 				type: 'h' + blockToken.hLevel,
-				src: getInlineContent(tokens[index+1])
+				content: getInlineContent(tokens[index+1])
 			};
 		}else if(blockToken.type === 'paragraph_open'){
 			var type = 'p';
