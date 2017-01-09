@@ -86,6 +86,13 @@ Page({
 - 图片
 - 表格
 
+## 测试
+
+```shell
+npm install
+npm test
+```
+
 ## 开源协议
 
 MIT

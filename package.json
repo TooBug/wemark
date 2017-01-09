@@ -1,0 +1,30 @@
+{
+  "name": "wemark",
+  "version": "1.0.0",
+  "description": "weapp(MINA) markdown render",
+  "main": "wemark/wemark.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TooBug/wemark.git"
+  },
+  "keywords": [
+    "weapp",
+    "markdown"
+  ],
+  "author": "TooBug <i@toobug.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TooBug/wemark/issues"
+  },
+  "homepage": "https://github.com/TooBug/wemark#readme",
+  "dependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.1.2"
+  }
+}
