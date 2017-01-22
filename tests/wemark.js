@@ -55,188 +55,257 @@ describe('markdown解析', function(){
 	var render = page2.wemark.renderList;
 	var image = page2.wemark.imageHeight;
 
-	it('renderList[0](h1)', function(){
-		render[0].should.be.eql({type:'h1', content:[{
-			type:'text',
-			content:'h1 Heading'
-		}]});
-	});
-	it('renderList[1](h2)', function(){
-		render[1].should.be.eql({type:'h2', content:[{
-			type:'text',
-			content:'h2 Heading'
-		}]});
-	});
-	it('renderList[2](h3)', function(){
-		render[2].should.be.eql({type:'h3', content:[{
-			type:'text',
-			content:'h3 Heading'
-		}]});
-	});
-	it('renderList[3](h4)', function(){
-		render[3].should.be.eql({type:'h4', content:[{
-			type:'text',
-			content:'h4 Heading'
-		}]});
-	});
-	it('renderList[4](h5)', function(){
-		render[4].should.be.eql({type:'h5', content:[{
-			type:'text',
-			content:'h5 Heading'
-		}]});
-	});
-	it('renderList[5](h6)', function(){
-		render[5].should.be.eql({type:'h6', content:[{
-			type:'text',
-			content:'h6 Heading'
-		}]});
-	});
-	it('renderList[6](p)', function(){
-		render[6].should.be.eql({type:'p', content:[{
-			type:'text',
-			content:'这是一段普通的文字，中间有一点'
-		},{
-			type:'code',
-			content:'代码'
-		},{
-			type:'text',
-			content:'，还有点'
-		},{
-			type:'strong',
-			content:'加粗'
-		},{
-			type:'text',
-			content:'的文字。'
-		}]});
-	});
-	it('renderList[7](ul li)', function(){
-		render[7].should.be.eql({
-			type: 'ul_li_p',
-			content: [ { type: 'text', content: '无序列表1' } ]
-		});
-	});
-	it('renderList[8](ul li ul li)', function(){
-		render[8].should.be.eql({
-			type: 'ul_li_p',
-			content: [
-					{ type: 'text', content: '无序列表2' },
-					{ type: 'text', content: '\t- 子项目' },
-					{ type: 'text', content: '\t- 子项目' }
-			]
-		});
-	});
-	it('renderList[9](ol li)', function(){
-		render[9].should.be.eql({
-			type: 'ol_li_p',
-			content: [
-				{ type: 'text', content: '1. ' },
-				{ type: 'text', content: 'Lorem ipsum dolor sit amet' }
-			]
-		});
-	});
-	it('renderList[10](ul li)', function(){
-		render[10].should.be.eql({
-			type: 'ol_li_p',
-			content: [
-				{ type: 'text', content: '2. ' },
-				{ type: 'text', content: 'Consectetur adipiscing elit' }
-			]
-		});
-	});
-	it('renderList[11](ol li)', function(){
-		render[11].should.be.eql({
-			type: 'ol_li_p',
-			content: [
-				{ type: 'text', content: '3. ' },
-				{ type: 'text', content: 'Integer molestie lorem at massa' }
-			]
-		});
-	});
+	var index = 0;
 
-	it('renderList[12](image)', function(){
-		render[12].should.be.eql({
-			"type": "p",
-			"content": [
-				{
-					"type": "image",
-					"src": "https://www.toobug.net/logo.png"
-				}
-			]
-		});
-	});
-	it('renderList[13](code)', function(){
-		render[13].should.be.eql({
-			"type": "code",
-			"content": "// 代码啊\n\nconsole.log(123);\n"
-		});
-	});
-	it('renderList[14](p)', function(){
-		render[14].should.be.eql({
-			"type": "p",
-			"content": [
-				{
-					"type": "text",
-					"content": "hello"
-				}
-			]
-		});
-	});
-	it('renderList[15](table thead)', function(){
-		render[15].should.be.eql({
-			"type": "table_tr",
-			"content": [
-				{
-					"type": "table_th",
-					"content": "表头1"
-				},
-				{
-					"type": "table_th",
-					"content": "表头2"
-				},
-				{
-					"type": "table_th",
-					"content": "表头3"
-				}
-			]
-		});
-	});
-	it('renderList[16](table tr)', function(){
-		render[16].should.be.eql({
-			"type": "table_tr",
-			"content": [
-				{
-					"type": "table_td",
-					"content": "11"
-				},
-				{
-					"type": "table_td",
-					"content": "12"
-				},
-				{
-					"type": "table_td",
-					"content": "13"
-				}
-			]
-		});
-	});
-	it('renderList[17](table tr)', function(){
-		render[17].should.be.eql({
-			"type": "table_tr",
-			"content": [
-				{
-					"type": "table_td",
-					"content": "21"
-				},
-				{
-					"type": "table_td",
-					"content": "22"
-				},
-				{
-					"type": "table_td",
-					"content": "23"
-				}
-			]
-		});
-	});
+	it('renderList[' + (index) + '](h1)', function(index){
+		return function(){
+			render[index].should.be.eql({type:'h1', content:[{
+				type:'text',
+				content:'h1 Heading'
+			}]});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](h2)', function(index){
+		return function(){
+			render[index].should.be.eql({type:'h2', content:[{
+				type:'text',
+				content:'h2 Heading'
+			}]});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](h3)', function(index){
+		return function(){
+			render[index].should.be.eql({type:'h3', content:[{
+				type:'text',
+				content:'h3 Heading'
+			}]});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](h4)', function(index){
+		return function(){
+			render[index].should.be.eql({type:'h4', content:[{
+				type:'text',
+				content:'h4 Heading'
+			}]});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](h5)', function(index){
+		return function(){
+			render[index].should.be.eql({type:'h5', content:[{
+				type:'text',
+				content:'h5 Heading'
+			}]});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](h6)', function(index){
+		return function(){
+			render[index].should.be.eql({type:'h6', content:[{
+				type:'text',
+				content:'h6 Heading'
+			}]});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](p code+strong)', function(index){
+		return function(){
+			render[index].should.be.eql({type:'p', content:[{
+				type:'text',
+				content:'这是一段普通的文字，中间有一点'
+			},{
+				type:'code',
+				content:'代码'
+			},{
+				type:'text',
+				content:'，还有点'
+			},{
+				type:'strong',
+				content:'加粗'
+			},{
+				type:'text',
+				content:'的文字。'
+			}]});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](p deleted)', function(index){
+		return function(){
+			render[index].should.be.eql({type:'p', content:[{
+				type:'text',
+				content:'普通'
+			},{
+				type:'deleted',
+				content:'被删除的文字'
+			},{
+				type:'text',
+				content:'哈哈'
+			}]});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](ul li)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				type: 'ul_li_p',
+				content: [ { type: 'text', content: '无序列表1' } ]
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](ul li ul li)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				type: 'ul_li_p',
+				content: [
+						{ type: 'text', content: '无序列表2' },
+						{ type: 'text', content: '\t- 子项目' },
+						{ type: 'text', content: '\t- 子项目' }
+				]
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](ol li)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				type: 'ol_li_p',
+				content: [
+					{ type: 'text', content: '1. ' },
+					{ type: 'text', content: 'Lorem ipsum dolor sit amet' }
+				]
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](ul li)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				type: 'ol_li_p',
+				content: [
+					{ type: 'text', content: '2. ' },
+					{ type: 'text', content: 'Consectetur adipiscing elit' }
+				]
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](ol li)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				type: 'ol_li_p',
+				content: [
+					{ type: 'text', content: '3. ' },
+					{ type: 'text', content: 'Integer molestie lorem at massa' }
+				]
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](image)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				"type": "p",
+				"content": [
+					{
+						"type": "image",
+						"src": "https://www.toobug.net/logo.png"
+					}
+				]
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](code)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				"type": "code",
+				"content": "// 代码啊\n\nconsole.log(123);\n"
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](p)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				"type": "p",
+				"content": [
+					{
+						"type": "text",
+						"content": "hello"
+					}
+				]
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](table thead)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				"type": "table_tr",
+				"content": [
+					{
+						"type": "table_th",
+						"content": "表头1"
+					},
+					{
+						"type": "table_th",
+						"content": "表头2"
+					},
+					{
+						"type": "table_th",
+						"content": "表头3"
+					}
+				]
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](table tr)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				"type": "table_tr",
+				"content": [
+					{
+						"type": "table_td",
+						"content": "11"
+					},
+					{
+						"type": "table_td",
+						"content": "12"
+					},
+					{
+						"type": "table_td",
+						"content": "13"
+					}
+				]
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](table tr)', function(index){
+		return function(){
+			render[index].should.be.eql({
+				"type": "table_tr",
+				"content": [
+					{
+						"type": "table_td",
+						"content": "21"
+					},
+					{
+						"type": "table_td",
+						"content": "22"
+					},
+					{
+						"type": "table_td",
+						"content": "23"
+					}
+				]
+			});
+		};
+	}(index++));
 
 });

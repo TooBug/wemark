@@ -54,6 +54,8 @@ function parse(md, page, options){
 						content: token.content
 					});
 					env = '';
+			}else if(token.type === 'del_open'){
+				env = 'deleted';
 				}else if(token.type === 'strong_open'){
 					env = 'strong';
 				}else if(token.type === 'em_open'){
@@ -140,12 +142,12 @@ function parse(md, page, options){
 		}else if(blockToken.type === 'th_open'){
 			tmp.content.push({
 				type: 'table_th',
-				content: getInlineContent(tokens[index+1]).map(function(inline){return inline.content}).join('')
+				content: getInlineContent(tokens[index+1]).map(function(inline){return inline.content;}).join('')
 			});
 		}else if(blockToken.type === 'td_open'){
 			tmp.content.push({
 				type: 'table_td',
-				content: getInlineContent(tokens[index+1]).map(function(inline){return inline.content}).join('')
+				content: getInlineContent(tokens[index+1]).map(function(inline){return inline.content;}).join('')
 			});
 		}
 	};
