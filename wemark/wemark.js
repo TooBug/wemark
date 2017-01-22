@@ -38,14 +38,20 @@ function parse(md, page, options){
 		var env;
 
 		if(inlineToken.type === 'htmlblock'){
-			var src = inlineToken.content.match(/src="(.*)"/)[1];
+			// 匹配video
+			// 兼容video[src]和video > source[src]
+			var videoRegExp = /<video.*?src\s*=\s*['"]*([^\s^'^"]+).*?(?:\/\s*\>|<\/video\>)/g;
 
-			ret.push({
-				type: inlineToken.type,
-				src: src
-			});
-
-			return ret;
+			var match;
+			var html = inlineToken.content.replace(/\n/g, '');
+			while(match = videoRegExp.exec(html)){
+				if(match[1]){
+					ret.push({
+						type: 'video',
+						src: match[1]
+					});
+				}
+			}
 		}else{
 			inlineToken.children.forEach(function(token, index){
 				if(['text', 'code'].indexOf(token.type) > -1){
@@ -74,10 +80,7 @@ function parse(md, page, options){
 
 	var getBlockContent = function(blockToken, index){
 		if(blockToken.type === 'htmlblock'){
-			return {
-				type: 'htmlblock',
-				content: getInlineContent(blockToken)
-			}
+			return getInlineContent(blockToken);
 		}else if(blockToken.type === 'heading_open'){
 			return {
 				type: 'h' + blockToken.hLevel,
@@ -154,7 +157,11 @@ function parse(md, page, options){
 
 	tokens.forEach(function(token, index){
 		var blockContent = getBlockContent(token, index);
-		if(blockContent){
+		if(Array.isArray(blockContent)){
+			blockContent.forEach(function(block){
+				renderList.push(block);
+			});
+		}else if(blockContent){
 			renderList.push(blockContent);
 		}
 	});

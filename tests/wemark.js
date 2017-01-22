@@ -308,4 +308,23 @@ describe('markdown解析', function(){
 		};
 	}(index++));
 
+	it('renderList[' + (index) + '](video > source[src])', function(index){
+		return function(){
+			render[index].should.be.eql({
+				"type": "video",
+				"src": "http://html5demos.com/assets/dizzy.mp4"
+			});
+		};
+	}(index++));
+
+	it('renderList[' + (index) + '](video[src])', function(index){
+		return function(){
+			render[index].should.be.eql({
+				"type": "video",
+				"src": "http://html5demos.com/assets/dizzy.mp4"
+			});
+		};
+	}(index++));
+
+
 });

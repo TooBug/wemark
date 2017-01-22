@@ -35,5 +35,11 @@ hello
 |11|12|13|
 |21|22|23|
 
+<video>
+<source src="http://html5demos.com/assets/dizzy.mp4">
+</source>
+</video>
+
+<video src="http://html5demos.com/assets/dizzy.mp4"></video>
 
 `;
