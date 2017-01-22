@@ -86,6 +86,10 @@
 	font-style: italic;
 	padding:0 5px;
 }
+.wemark_inline_deleted{
+	text-decoration: line-through;
+	padding:0 5px;
+}
 .wemark_inline_image{
 	width:100%;
 	height:auto;
