@@ -62,6 +62,7 @@
 	line-height: 1.5em;
 	border:1px solid #f0f0f0;
 	white-space: pre;
+	overflow: auto;
 }
 .wemark_block_table_tr{
 	display: flex;
@@ -86,14 +87,17 @@
 .wemark_inline_strong{
 	font-weight: bold;
 	padding:0 5px;
+	word-break: break-word;
 }
 .wemark_inline_em{
 	font-style: italic;
 	padding:0 5px;
+	word-break: break-word;
 }
 .wemark_inline_deleted{
 	text-decoration: line-through;
 	padding:0 5px;
+	word-break: break-word;
 }
 .wemark_inline_image{
 	width:100%;
@@ -102,4 +106,8 @@
 .wemark_inline_code{
 	background:#f0f0f0;
 	padding:3px 5px;
+	word-break: break-word;
+}
+.wemark_inline_text{
+	word-break: break-word;
 }
