@@ -42,7 +42,7 @@ page({
 - `md`，必填，需要渲染的Markdown字符串
 - `this`，必填，`Page`实例
 - `options`，其它的参数
-	- `imageWidth`，图片的宽度，如包含图片，则为必填，以`px`为单位
+	- ~~`imageWidth`，图片的宽度，如包含图片，则为必填，以`px`为单位~~ 新版小程序图片可以自适应宽高
 	- `name`，对应上面指定的数据名称，默认为`wemark`
 
 ### 3. WXML部分
@@ -68,7 +68,8 @@ Page({
 	},
 	onReady: function(){
 		wemark.parse(md, this, {
-			imageWidth: wx.getSystemInfoSync().windowWidth - 40,
+			// 新版小程序可自适应宽高
+			// imageWidth: wx.getSystemInfoSync().windowWidth - 40,
 			name: 'wemark'
 		})
 	}
