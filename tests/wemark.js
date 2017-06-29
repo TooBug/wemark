@@ -37,15 +37,15 @@ describe('parse基础功能', function(){
 	it('page.wemark是一个对象', function(){
 		page1.wemark.should.be.an.Object();
 	});
-	it('page.wemarkFixImageHeight是一个函数', function(){
+	/*it('page.wemarkFixImageHeight是一个函数', function(){
 		page1.wemarkFixImageHeight.should.be.a.Function();
-	});
+	});*/
 	it('page.wemark.renderList是一个数组', function(){
 		page1.wemark.renderList.should.be.an.Array();
 	});
-	it('page.wemark.imageHeight是一个对象', function(){
+	/*it('page.wemark.imageHeight是一个对象', function(){
 		page1.wemark.imageHeight.should.be.an.Object();
-	});
+	});*/
 });
 
 describe('markdown解析', function(){
