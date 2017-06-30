@@ -3,7 +3,7 @@
 [![Travis](https://img.shields.io/travis/TooBug/wemark/master.svg)](https://travis-ci.org/TooBug/wemark)
 ![MIT](https://img.shields.io/badge/LICENSE-MIT-green.svg)
 
-![wemark](./screenshot.jpg)
+![wemark](./screenshot.png)
 
 ## 背景和功能
 
@@ -104,8 +104,18 @@ npm test
 
 MIT
 
+## 用户列表
+
+- [TooNote](https://xiaotu.io)
+
+如果你也使用了 wemark，欢迎提 PR 将自己的小程序加入列表
+
 ## 版本记录
 
+### v1.2.0 2017-06-30
+
+- 一些渲染细节样式修正 #9 #10
+- 图片渲染使用`widthFix`模式，不再动态计算调试 #11 #12
 ### v1.1.0 2017-01-22
 
 - 添加删除线渲染（`~~deleted~~`）
