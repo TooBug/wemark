@@ -107,6 +107,7 @@ MIT
 ## 用户列表
 
 - [TooNote](https://xiaotu.io)
+- [王者荣耀早知道](https://www.wxappr.com/app/1449)
 - [群里有事](http://www.ifanr.com/minapp/843889) （目测 尝试联系作者确认，没有回应）
 
 如果你也使用了 wemark，欢迎提 PR 将自己的小程序加入列表
