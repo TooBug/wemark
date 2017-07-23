@@ -40,16 +40,22 @@ function parse(md, page, options){
 		if(inlineToken.type === 'htmlblock'){
 			// 匹配video
 			// 兼容video[src]和video > source[src]
-			var videoRegExp = /<video.*?src\s*=\s*['"]*([^\s^'^"]+).*?(?:\/\s*\>|<\/video\>)/g;
+			var videoRegExp = /<video.*?src\s*=\s*['"]*([^\s^'^"]+).*?poster\s*=\s*['"]*([^\s^'^"]+).*?(?:\/\s*\>|<\/video\>)/g;
 
 			var match;
 			var html = inlineToken.content.replace(/\n/g, '');
 			while(match = videoRegExp.exec(html)){
 				if(match[1]){
-					ret.push({
+					var retParam = {
 						type: 'video',
 						src: match[1]
-					});
+					};
+					
+					if(match[2]) {
+						retParam.poster = match[2];
+					}
+					
+					ret.push(retParam);
 				}
 			}
 		}else{
