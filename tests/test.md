@@ -42,4 +42,10 @@ hello
 
 <video src="http://html5demos.com/assets/dizzy.mp4"></video>
 
+<video>
+<source src="http://html5demos.com/assets/dizzy.mp4" poster="http://via.placeholder.com/350x150">
+</source>
+</video>
+
+<video src="http://html5demos.com/assets/dizzy.mp4" poster="http://via.placeholder.com/350x150"></video>
 `;

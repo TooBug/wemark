@@ -40,7 +40,7 @@ function parse(md, page, options){
 		if(inlineToken.type === 'htmlblock'){
 			// 匹配video
 			// 兼容video[src]和video > source[src]
-			var videoRegExp = /<video.*?src\s*=\s*['"]*([^\s^'^"]+).*?poster\s*=\s*['"]*([^\s^'^"]+).*?(?:\/\s*\>|<\/video\>)/g;
+			var videoRegExp = /<video.*?src\s*=\s*['"]*([^\s^'^"]+).*?(poster\s*=\s*['"]*([^\s^'^"]+).*?)?(?:\/\s*\>|<\/video\>)/g;
 
 			var match;
 			var html = inlineToken.content.replace(/\n/g, '');
@@ -51,8 +51,8 @@ function parse(md, page, options){
 						src: match[1]
 					};
 					
-					if(match[2]) {
-						retParam.poster = match[2];
+					if(match[3]) {
+						retParam.poster = match[3];
 					}
 					
 					ret.push(retParam);
