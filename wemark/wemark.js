@@ -66,8 +66,8 @@ function parse(md, page, options){
 						content: token.content
 					});
 					env = '';
-			}else if(token.type === 'del_open'){
-				env = 'deleted';
+				}else if(token.type === 'del_open'){
+					env = 'deleted';
 				}else if(token.type === 'strong_open'){
 					env = 'strong';
 				}else if(token.type === 'em_open'){
