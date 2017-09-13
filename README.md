@@ -5,6 +5,10 @@
 
 ![wemark](./screenshot.png)
 
+## 已知问题
+
+**有开发者反馈微信开发者工具升级之后，在开发者工具中无法显示，或者旧版开发者工具导致在真实环境无法显示，原因待查，解决方案可参见[#17](https://github.com/TooBug/wemark/issues/17#issuecomment-327701100)**
+
 ## 背景和功能
 
 用于在小程序中渲染Markdown文本。
