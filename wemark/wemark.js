@@ -163,7 +163,7 @@ function parse(md, page, options){
 			blockContent = [blockContent];
 		}
 		blockContent.forEach(function(block){
-			if(Array.isArray){
+			if(Array.isArray(block.content)){
 				block.isArray = true;
 			}else{
 				block.isArray = false;

@@ -59,7 +59,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](h1)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h1', content:[{
+			render[index].should.be.eql({type:'h1', isArray:true, content:[{
 				type:'text',
 				content:'h1 Heading'
 			}]});
@@ -68,7 +68,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](h2)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h2', content:[{
+			render[index].should.be.eql({type:'h2', isArray:true, content:[{
 				type:'text',
 				content:'h2 Heading'
 			}]});
@@ -77,7 +77,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](h3)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h3', content:[{
+			render[index].should.be.eql({type:'h3', isArray:true, content:[{
 				type:'text',
 				content:'h3 Heading'
 			}]});
@@ -86,7 +86,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](h4)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h4', content:[{
+			render[index].should.be.eql({type:'h4', isArray:true, content:[{
 				type:'text',
 				content:'h4 Heading'
 			}]});
@@ -95,7 +95,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](h5)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h5', content:[{
+			render[index].should.be.eql({type:'h5', isArray:true, content:[{
 				type:'text',
 				content:'h5 Heading'
 			}]});
@@ -104,7 +104,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](h6)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h6', content:[{
+			render[index].should.be.eql({type:'h6', isArray:true, content:[{
 				type:'text',
 				content:'h6 Heading'
 			}]});
@@ -113,7 +113,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](p code+strong)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'p', content:[{
+			render[index].should.be.eql({type:'p', isArray:true, content:[{
 				type:'text',
 				content:'这是一段普通的文字，中间有一点'
 			},{
@@ -134,7 +134,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](p deleted)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'p', content:[{
+			render[index].should.be.eql({type:'p', isArray:true, content:[{
 				type:'text',
 				content:'普通'
 			},{
@@ -151,6 +151,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				type: 'ul_li_p',
+				isArray: true,
 				content: [ { type: 'text', content: '无序列表1' } ]
 			});
 		};
@@ -160,6 +161,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				type: 'ul_li_p',
+				isArray: true,
 				content: [
 						{ type: 'text', content: '无序列表2' },
 						{ type: 'text', content: '\t- 子项目' },
@@ -173,6 +175,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				type: 'ol_li_p',
+				isArray: true,
 				content: [
 					{ type: 'text', content: '1. ' },
 					{ type: 'text', content: 'Lorem ipsum dolor sit amet' }
@@ -185,6 +188,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				type: 'ol_li_p',
+				isArray: true,
 				content: [
 					{ type: 'text', content: '2. ' },
 					{ type: 'text', content: 'Consectetur adipiscing elit' }
@@ -197,6 +201,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				type: 'ol_li_p',
+				isArray: true,
 				content: [
 					{ type: 'text', content: '3. ' },
 					{ type: 'text', content: 'Integer molestie lorem at massa' }
@@ -209,6 +214,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "p",
+				"isArray": true,
 				"content": [
 					{
 						"type": "image",
@@ -223,6 +229,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "code",
+				"isArray": false,
 				"content": "// 代码啊\n\nconsole.log(123);\n"
 			});
 		};
@@ -232,6 +239,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "p",
+				"isArray": true,
 				"content": [
 					{
 						"type": "text",
@@ -246,6 +254,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "table_tr",
+				"isArray": true,
 				"content": [
 					{
 						"type": "table_th",
@@ -268,6 +277,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "table_tr",
+				"isArray": true,
 				"content": [
 					{
 						"type": "table_td",
@@ -290,6 +300,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "table_tr",
+				"isArray": true,
 				"content": [
 					{
 						"type": "table_td",
@@ -312,6 +323,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "video",
+				"isArray": false,
 				"src": "http://html5demos.com/assets/dizzy.mp4"
 			});
 		};
@@ -321,6 +333,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "video",
+				"isArray": false,
 				"src": "http://html5demos.com/assets/dizzy.mp4"
 			});
 		};
@@ -330,6 +343,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "video",
+				"isArray": false,
 				"src": "http://html5demos.com/assets/dizzy.mp4",
 				"poster": "http://via.placeholder.com/350x150"
 			});
@@ -340,6 +354,7 @@ describe('markdown解析', function(){
 		return function(){
 			render[index].should.be.eql({
 				"type": "video",
+				"isArray": false,
 				"src": "http://html5demos.com/assets/dizzy.mp4",
 				"poster": "http://via.placeholder.com/350x150"
 			});
