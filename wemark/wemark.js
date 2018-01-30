@@ -7,11 +7,6 @@ function parse(md, page, options){
 
 	if(!options) options = {};
 	if(!options.name) options.name = 'wemark';
-	/*if(!options.imageWidth) {
-		// 先写一个默认值
-		var sysInfo = wx.getSystemInfoSync();
-		options.imageWidth = sysInfo.windowWidth;
-	}*/
 
 	var tokens = parser.parse(md, {});
 
@@ -163,24 +158,19 @@ function parse(md, page, options){
 
 	tokens.forEach(function(token, index){
 		var blockContent = getBlockContent(token, index);
-		if(Array.isArray(blockContent)){
-			blockContent.forEach(function(block){
-				renderList.push(block);
-			});
-		}else if(blockContent){
-			renderList.push(blockContent);
+		if(!blockContent) return;
+		if(!Array.isArray(blockContent)){
+			blockContent = [blockContent];
 		}
+		blockContent.forEach(function(block){
+			if(Array.isArray){
+				block.isArray = true;
+			}else{
+				block.isArray = false;
+			}
+			renderList.push(block);
+		});
 	});
-
-	// 为page实例添加fixHeight方法
-	/*page.wemarkFixImageHeight = function (e){
-		var natureHeight = e.detail.height;
-		var natureWidth = e.detail.width;
-		var asp = natureHeight/natureWidth;
-		var obj = {};
-		obj[options.name + '.imageHeight.' + e.target.dataset.id] = options.imageWidth*asp;
-		this.setData(obj);
-	};*/
 
 	var obj = {};
 	obj[options.name] = ret;

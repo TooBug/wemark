@@ -17,11 +17,15 @@
 }
 .wemark_block_h3{
 	font-size:36rpx;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 .wemark_block_h4,
 .wemark_block_h5,
 .wemark_block_h6{
 	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 .wemark_block_p{
 	margin-top:1em;
@@ -87,17 +91,17 @@
 .wemark_inline_strong{
 	font-weight: bold;
 	padding:0 5px;
-	word-break: break-word;
+	word-wrap:break-word;
 }
 .wemark_inline_em{
 	font-style: italic;
 	padding:0 5px;
-	word-break: break-word;
+	word-wrap:break-word;
 }
 .wemark_inline_deleted{
 	text-decoration: line-through;
 	padding:0 5px;
-	word-break: break-word;
+	word-wrap:break-word;
 }
 .wemark_inline_image{
 	width:100%;
@@ -106,8 +110,8 @@
 .wemark_inline_code{
 	background:#f0f0f0;
 	padding:3px 5px;
-	word-break: break-word;
+	word-wrap:break-word;
 }
 .wemark_inline_text{
-	word-break: break-word;
+	word-wrap:break-word;
 }
