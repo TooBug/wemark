@@ -1,6 +1,6 @@
 {
   "name": "wemark",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "weapp(MINA) markdown render",
   "main": "wemark/wemark.js",
   "directories": {
