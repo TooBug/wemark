@@ -3,11 +3,7 @@ var parser = new Remarkable({
     html: true
 });
 
-function parse(md, page, options) {
-
-    if (!options) options = {};
-    if (!options.name) options.name = 'wemark';
-
+function parse(md) {
     var tokens = parser.parse(md, {});
 
     // markdwon渲染列表
@@ -193,9 +189,7 @@ function parse(md, page, options) {
         });
     });
 
-    var obj = {};
-    obj[options.name] = ret;
-    page.setData(obj);
+    return ret;
 }
 
 module.exports = {
