@@ -8,12 +8,12 @@ function parse(md) {
 
     // markdwon渲染列表
     var renderList = [];
-    // 图片高度数组
-    var imageHeight = {};
+    // markdown包含的图片列表，用于预览
+    var imageList = [];
     // 返回的数据
     var ret = {
         renderList: renderList,
-        imageHeight: imageHeight
+        imageList: imageList
     };
 
     var env = [];
@@ -74,6 +74,7 @@ function parse(md) {
                             type: token.type,
                             src: token.src
                         });
+                        imageList.push(token.src)
                         break;
                 }
             });

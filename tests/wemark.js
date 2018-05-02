@@ -27,6 +27,9 @@ describe('parse基础功能', function(){
 	/*it('page.wemark.imageHeight是一个对象', function(){
 		page1.wemark.imageHeight.should.be.an.Object();
 	});*/
+	it('ret.imageList是一个数组', function(){
+		ret.imageList.should.be.an.Array();
+	});
 });
 
 describe('markdown解析', function(){
