@@ -1,24 +1,6 @@
 var wemark = require('../wemark/wemark');
 var should = require('should');
 
-// 模拟Page
-function Page(){
-}
-Page.prototype.setData = function(data){
-	for(var key in data){
-		this[key] = data[key];
-	}
-};
-
-// 模拟wx对象
-global.wx = {
-	getSystemInfoSync: function(){
-		return {
-			windowWidth: 375
-		};
-	}
-};
-
 describe('wemark存在性判断', function() {
 	it('wemark是一个对象', function() {
 		wemark.should.be.an.Object();
@@ -26,34 +8,34 @@ describe('wemark存在性判断', function() {
 	it('wemark.parse是一个函数', function() {
 		wemark.parse.should.be.a.Function();
 	});
-	it('wemark.parse接受三个参数', function() {
-		wemark.parse.length.should.equal(3);
+	it('wemark.parse接受一个参数', function() {
+		wemark.parse.length.should.equal(1);
 	});
 });
 
 describe('parse基础功能', function(){
-	var page1 = new Page();
-	wemark.parse('# hello', page1);
-	it('page.wemark是一个对象', function(){
-		page1.wemark.should.be.an.Object();
+	var ret = wemark.parse('# hello');
+	it('ret是一个对象', function(){
+		ret.should.be.an.Object();
 	});
 	/*it('page.wemarkFixImageHeight是一个函数', function(){
 		page1.wemarkFixImageHeight.should.be.a.Function();
 	});*/
-	it('page.wemark.renderList是一个数组', function(){
-		page1.wemark.renderList.should.be.an.Array();
+	it('ret.renderList是一个数组', function(){
+		ret.renderList.should.be.an.Array();
 	});
 	/*it('page.wemark.imageHeight是一个对象', function(){
 		page1.wemark.imageHeight.should.be.an.Object();
 	});*/
+	it('ret.imageList是一个数组', function(){
+		ret.imageList.should.be.an.Array();
+	});
 });
 
 describe('markdown解析', function(){
 	var md = require('./test.md');
-	var page2 = new Page();
-	wemark.parse(md, page2, {imageWidth:300});
-	var render = page2.wemark.renderList;
-	var image = page2.wemark.imageHeight;
+	var ret = wemark.parse(md);
+	var render = ret.renderList;
 
 	var index = 0;
 
