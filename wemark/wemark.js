@@ -54,7 +54,7 @@ function parse(md, page, options){
 				}
 			}
 		}else{
-			inlineToken.children.forEach(function(token, index){
+			inlineToken.children && inlineToken.children.forEach(function(token, index){
 				if(['text', 'code'].indexOf(token.type) > -1){
 					ret.push({
 						type: env || token.type,
