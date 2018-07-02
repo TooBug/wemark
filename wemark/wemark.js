@@ -113,6 +113,11 @@ function parse(md, page, options){
 				type: 'code',
 				content: blockToken.content
 			};
+		}else if(blockToken.type === 'code'){
+			return {
+				type: 'code',
+				content: blockToken.content
+			};
 		}else if(blockToken.type === 'bullet_list_open'){
 			env.push('ul');
 			listLevel++;
