@@ -115,3 +115,8 @@
 .wemark_inline_text{
 	word-wrap:break-word;
 }
+.wemark_inline_link{
+	display: inline;
+	color: blue;
+	word-wrap:break-word;
+}

@@ -3,6 +3,7 @@
 	<view class="wemark_block_{{renderBlock.type}}">
 		<block wx:if="{{renderBlock.isArray}}" wx:for="{{renderBlock.content}}" wx:key="inlineIndex" wx:for-index="inlineIndex" wx:for-item="renderInline">
 			<text class="wemark_inline_{{renderInline.type}}" wx:if="{{renderInline.type === 'text' || renderInline.type === 'code' || renderInline.type === 'strong' || renderInline.type === 'deleted' || renderInline.type === 'em' || renderInline.type === 'table_th' || renderInline.type === 'table_td'}}">{{renderInline.content}}</text>
+			<navigator class="wemark_inline_link" url="{{renderInline.data.href}}" wx:if="{{renderInline.type === 'link'}}">{{renderInline.content}}</navigator>
 			<image mode="widthFix" class="wemark_inline_image" src="{{renderInline.src}}" wx:if="{{renderInline.type === 'image'}}"></image>
 		</block>
 		<block wx:if="{{!renderBlock.isArray}}">
