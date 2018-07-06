@@ -56,6 +56,16 @@ function parse(md, options){
 					env = '';
 				}else if(token.type === 'del_open'){
 					env = 'deleted';
+				}else if (token.type === 'softbreak') {
+					ret.push({
+						type: 'text',
+						content: ' '
+					});
+				}else if (token.type === 'hardbreak') {
+					ret.push({
+						type: 'text',
+						content: '\n'
+					});
 				}else if(token.type === 'strong_open'){
 					env = 'strong';
 				}else if(token.type === 'em_open'){
