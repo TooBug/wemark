@@ -6,8 +6,6 @@ var parser = new Remarkable({
 function parse(md, options){
 
 	if(!options) options = {};
-	if(!options.name) options.name = 'wemark';
-
 	var tokens = parser.parse(md, {});
 
 	// markdwon渲染列表
@@ -24,6 +22,7 @@ function parse(md, options){
 	var getInlineContent = function(inlineToken){
 		var ret = [];
 		var env;
+		var tokenData = {};
 
 		if(inlineToken.type === 'htmlblock'){
 			// 匹配video
@@ -47,19 +46,39 @@ function parse(md, options){
 				}
 			}
 		}else{
+			// console.log(inlineToken);
 			inlineToken.children && inlineToken.children.forEach(function(token, index){
 				if(['text', 'code'].indexOf(token.type) > -1){
 					ret.push({
 						type: env || token.type,
-						content: token.content
+						content: token.content,
+						data: tokenData
 					});
 					env = '';
+					tokenData = {};
 				}else if(token.type === 'del_open'){
 					env = 'deleted';
+				}else if (token.type === 'softbreak') {
+					ret.push({
+						type: 'text',
+						content: ' '
+					});
+				}else if (token.type === 'hardbreak') {
+					ret.push({
+						type: 'text',
+						content: '\n'
+					});
 				}else if(token.type === 'strong_open'){
 					env = 'strong';
-				}else if(token.type === 'em_open'){
+				}else if (token.type === 'em_open') {
 					env = 'em';
+				}else if (token.type === 'link_open') {
+					if(options.link){
+						env = 'link';
+						tokenData = {
+							href: token.href
+						};
+					}
 				}else if(token.type === 'image'){
 					ret.push({
 						type: token.type,

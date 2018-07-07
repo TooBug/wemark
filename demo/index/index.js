@@ -5,6 +5,6 @@ Page({
 	md: md
   },
   onLoad: function () {
-    console.log(this.data.md);
+    // console.log(this.data.md);
   },
 })
