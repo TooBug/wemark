@@ -217,6 +217,7 @@ describe('markdown解析', function(){
 			renderList[index].should.be.eql({
 				"type": "code",
 				"isArray": false,
+				"highlight": false,
 				"content": "// 代码啊\n\nconsole.log(123);\n"
 			});
 		};

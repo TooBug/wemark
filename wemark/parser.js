@@ -2,6 +2,7 @@ var Remarkable = require('./remarkable');
 var parser = new Remarkable({
 	html: true
 });
+var prism = require('./prism');
 
 function parse(md, options){
 
@@ -49,9 +50,6 @@ function parse(md, options){
 			// console.log(inlineToken);
 			inlineToken.children && inlineToken.children.forEach(function(token, index){
 				if(['text', 'code'].indexOf(token.type) > -1){
-					if(token.type === 'code'){
-						console.log(token);
-					}
 					ret.push({
 						type: env || token.type,
 						content: token.content,
@@ -124,15 +122,17 @@ function parse(md, options){
 				type: prefix + 'p',
 				content: content
 			};
-		}else if(blockToken.type === 'fence'){
+		}else if(blockToken.type === 'fence' || blockToken.type === 'code'){
+			content = blockToken.content;
+			var highlight = false;
+			if(options.highlight && blockToken.params && prism.languages[blockToken.params]){
+				content = prism.tokenize(content, prism.languages[blockToken.params]);
+				highlight = true;
+			}
 			return {
 				type: 'code',
-				content: blockToken.content
-			};
-		}else if(blockToken.type === 'code'){
-			return {
-				type: 'code',
-				content: blockToken.content
+				highlight: highlight,
+				content: content
 			};
 		}else if(blockToken.type === 'bullet_list_open'){
 			env.push('ul');
