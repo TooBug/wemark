@@ -49,6 +49,9 @@ function parse(md, options){
 			// console.log(inlineToken);
 			inlineToken.children && inlineToken.children.forEach(function(token, index){
 				if(['text', 'code'].indexOf(token.type) > -1){
+					if(token.type === 'code'){
+						console.log(token);
+					}
 					ret.push({
 						type: env || token.type,
 						content: token.content,

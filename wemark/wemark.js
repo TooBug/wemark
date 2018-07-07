@@ -16,6 +16,10 @@ Component({
 		link: {
 			type: Boolean,
 			value: false
+		},
+		hightlight: {
+			type: Boolean,
+			value: false
 		}
     },
     data: {
@@ -26,7 +30,8 @@ Component({
         parseMd(){
 			if (this.data.md) {
 				var parsedData = parser.parse(this.data.md, {
-					link: this.data.link
+					link: this.data.link,
+					hightlight: this.data.hightlight
 				});
 				// console.log('parsedData:', parsedData);
 				if(this.data.type === 'wemark'){
