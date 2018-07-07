@@ -1,4 +1,4 @@
 App({
-  onLaunch: function () {
-  }
+	onLaunch: function () {
+	}
 })

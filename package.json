@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha tests/*.js"
+	"lint": "eslint wemark/wemark.js wemark/parser.js",
+    "test": "npm run lint&&mocha tests/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,8 @@
     "url": "https://github.com/TooBug/wemark/issues"
   },
   "homepage": "https://github.com/TooBug/wemark#readme",
-  "dependencies": {
+  "devDependencies": {
+    "eslint": "^5.0.1",
     "mocha": "^3.2.0",
     "should": "^11.1.2"
   }

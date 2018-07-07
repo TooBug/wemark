@@ -34,11 +34,9 @@ Component({
 						parsedData
 					});
 				}else{
-					var inTable = false;
 					var richTextNodes = [];
 
 					var getNodeName = (function(){
-						var stack = [];
 						return function(type, nodeType = 'inline'){
 							if(type === 'table_tr'){
 								return 'tr';
@@ -51,7 +49,7 @@ Component({
 									}else{
 										return typePart[0];
 									}
-									
+
 								}
 							}
 							return type;
@@ -138,7 +136,7 @@ Component({
 						}
 						return richTextNode;
 					}
-					
+
 					for(var i=0; i<parsedData.length;i++){
 						var node = parsedData[i];
 						if(node.type === 'table_tr'){
@@ -158,14 +156,14 @@ Component({
 						}else{
 							richTextNodes.push(getBlockNode(node));
 						}
-						
+
 					}
-					console.log('richTextNodes:', richTextNodes);
+					// console.log('richTextNodes:', richTextNodes);
 					this.setData({
 						richTextNodes
 					});
 				}
-                
+
             }
         }
     }

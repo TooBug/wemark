@@ -1,0 +1,20 @@
+{
+	"parserOptions": {
+		"ecmaVersion": 2015
+	},
+	"extends": "eslint:recommended",
+    "globals": {
+		"global": true,
+		"require": true,
+		"module": true,
+		"App": true,
+		"Page": true,
+		"Component": true
+	},
+	"rules": {
+		"no-cond-assign": "off",
+		"no-unused-vars": ["warn", {
+			"args": "none"
+		}]
+	}
+}

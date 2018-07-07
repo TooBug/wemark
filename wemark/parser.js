@@ -10,7 +10,7 @@ function parse(md, options){
 
 	// markdwon渲染列表
 	var renderList = [];
-	
+
 	var env = [];
 	// 记录当前list深度
 	var listLevel = 0;
@@ -27,7 +27,7 @@ function parse(md, options){
 		if(inlineToken.type === 'htmlblock'){
 			// 匹配video
 			// 兼容video[src]和video > source[src]
-			var videoRegExp = /<video.*?src\s*=\s*['"]*([^\s^'^"]+).*?(poster\s*=\s*['"]*([^\s^'^"]+).*?)?(?:\/\s*\>|<\/video\>)/g;
+			var videoRegExp = /<video.*?src\s*=\s*['"]*([^\s^'^"]+).*?(poster\s*=\s*['"]*([^\s^'^"]+).*?)?(?:\/\s*>|<\/video>)/g;
 
 			var match;
 			var html = inlineToken.content.replace(/\n/g, '');
@@ -37,11 +37,11 @@ function parse(md, options){
 						type: 'video',
 						src: match[1]
 					};
-					
+
 					if(match[3]) {
 						retParam.poster = match[3];
 					}
-					
+
 					ret.push(retParam);
 				}
 			}
@@ -59,10 +59,11 @@ function parse(md, options){
 				}else if(token.type === 'del_open'){
 					env = 'deleted';
 				}else if (token.type === 'softbreak') {
-					ret.push({
+					// todo:处理li的问题
+					/* ret.push({
 						type: 'text',
 						content: ' '
-					});
+					}); */
 				}else if (token.type === 'hardbreak') {
 					ret.push({
 						type: 'text',
@@ -100,7 +101,7 @@ function parse(md, options){
 				content: getInlineContent(tokens[index+1])
 			};
 		}else if(blockToken.type === 'paragraph_open'){
-			var type = 'p';
+			// var type = 'p';
 			var prefix = '';
 			if(env.length){
 				prefix = env.join('_') + '_';

@@ -1,23 +1,6 @@
-var wemark = require('../wemark/wemark');
+/*global describe,it*/
+var wemark = require('../wemark/parser');
 var should = require('should');
-
-// 模拟Page
-function Page(){
-}
-Page.prototype.setData = function(data){
-	for(var key in data){
-		this[key] = data[key];
-	}
-};
-
-// 模拟wx对象
-global.wx = {
-	getSystemInfoSync: function(){
-		return {
-			windowWidth: 375
-		};
-	}
-};
 
 describe('wemark存在性判断', function() {
 	it('wemark是一个对象', function() {
@@ -26,22 +9,15 @@ describe('wemark存在性判断', function() {
 	it('wemark.parse是一个函数', function() {
 		wemark.parse.should.be.a.Function();
 	});
-	it('wemark.parse接受三个参数', function() {
-		wemark.parse.length.should.equal(3);
+	it('wemark.parse接受两个参数', function() {
+		wemark.parse.length.should.equal(2);
 	});
 });
 
 describe('parse基础功能', function(){
-	var page1 = new Page();
-	wemark.parse('# hello', page1);
-	it('page.wemark是一个对象', function(){
-		page1.wemark.should.be.an.Object();
-	});
-	/*it('page.wemarkFixImageHeight是一个函数', function(){
-		page1.wemarkFixImageHeight.should.be.a.Function();
-	});*/
-	it('page.wemark.renderList是一个数组', function(){
-		page1.wemark.renderList.should.be.an.Array();
+	var renderList = wemark.parse('# hello');
+	it('renderList是一个数组', function(){
+		renderList.should.be.an.Array();
 	});
 	/*it('page.wemark.imageHeight是一个对象', function(){
 		page1.wemark.imageHeight.should.be.an.Object();
@@ -50,122 +26,133 @@ describe('parse基础功能', function(){
 
 describe('markdown解析', function(){
 	var md = require('./test.md');
-	var page2 = new Page();
-	wemark.parse(md, page2, {imageWidth:300});
-	var render = page2.wemark.renderList;
-	var image = page2.wemark.imageHeight;
+	var renderList = wemark.parse(md);
 
 	var index = 0;
 
 	it('renderList[' + (index) + '](h1)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h1', isArray:true, content:[{
+			renderList[index].should.be.eql({type:'h1', isArray:true, content:[{
 				type:'text',
-				content:'h1 Heading'
+				content:'h1 Heading',
+				data:{}
 			}]});
 		};
 	}(index++));
 
 	it('renderList[' + (index) + '](h2)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h2', isArray:true, content:[{
+			renderList[index].should.be.eql({type:'h2', isArray:true, content:[{
 				type:'text',
-				content:'h2 Heading'
+				content:'h2 Heading',
+				data:{}
 			}]});
 		};
 	}(index++));
 
 	it('renderList[' + (index) + '](h3)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h3', isArray:true, content:[{
+			renderList[index].should.be.eql({type:'h3', isArray:true, content:[{
 				type:'text',
-				content:'h3 Heading'
+				content:'h3 Heading',
+				data:{}
 			}]});
 		};
 	}(index++));
 
 	it('renderList[' + (index) + '](h4)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h4', isArray:true, content:[{
+			renderList[index].should.be.eql({type:'h4', isArray:true, content:[{
 				type:'text',
-				content:'h4 Heading'
+				content:'h4 Heading',
+				data:{}
 			}]});
 		};
 	}(index++));
 
 	it('renderList[' + (index) + '](h5)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h5', isArray:true, content:[{
+			renderList[index].should.be.eql({type:'h5', isArray:true, content:[{
 				type:'text',
-				content:'h5 Heading'
+				content:'h5 Heading',
+				data:{}
 			}]});
 		};
 	}(index++));
 
 	it('renderList[' + (index) + '](h6)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'h6', isArray:true, content:[{
+			renderList[index].should.be.eql({type:'h6', isArray:true, content:[{
 				type:'text',
-				content:'h6 Heading'
+				content:'h6 Heading',
+				data:{}
 			}]});
 		};
 	}(index++));
 
 	it('renderList[' + (index) + '](p code+strong)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'p', isArray:true, content:[{
+			renderList[index].should.be.eql({type:'p', isArray:true, content:[{
 				type:'text',
-				content:'这是一段普通的文字，中间有一点'
+				content:'这是一段普通的文字，中间有一点',
+				data:{}
 			},{
 				type:'code',
-				content:'代码'
+				content:'代码',
+				data:{}
 			},{
 				type:'text',
-				content:'，还有点'
+				content:'，还有点',
+				data:{}
 			},{
 				type:'strong',
-				content:'加粗'
+				content:'加粗',
+				data:{}
 			},{
 				type:'text',
-				content:'的文字。'
+				content:'的文字。',
+				data:{}
 			}]});
 		};
 	}(index++));
 
 	it('renderList[' + (index) + '](p deleted)', function(index){
 		return function(){
-			render[index].should.be.eql({type:'p', isArray:true, content:[{
+			renderList[index].should.be.eql({type:'p', isArray:true, content:[{
 				type:'text',
-				content:'普通'
+				content:'普通',
+				data:{}
 			},{
 				type:'deleted',
-				content:'被删除的文字'
+				content:'被删除的文字',
+				data:{}
 			},{
 				type:'text',
-				content:'哈哈'
+				content:'哈哈',
+				data:{}
 			}]});
 		};
 	}(index++));
 
 	it('renderList[' + (index) + '](ul li)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				type: 'ul_li_p',
 				isArray: true,
-				content: [ { type: 'text', content: '无序列表1' } ]
+				content: [ { type: 'text', content: '无序列表1', data: {} } ]
 			});
 		};
 	}(index++));
 
 	it('renderList[' + (index) + '](ul li ul li)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				type: 'ul_li_p',
 				isArray: true,
 				content: [
-						{ type: 'text', content: '无序列表2' },
-						{ type: 'text', content: '\t- 子项目' },
-						{ type: 'text', content: '\t- 子项目' }
+						{ type: 'text', content: '无序列表2', data: {} },
+						{ type: 'text', content: '\t- 子项目', data: {} },
+						{ type: 'text', content: '\t- 子项目', data: {} }
 				]
 			});
 		};
@@ -173,12 +160,12 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](ol li)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				type: 'ol_li_p',
 				isArray: true,
 				content: [
 					{ type: 'text', content: '1. ' },
-					{ type: 'text', content: 'Lorem ipsum dolor sit amet' }
+					{ type: 'text', content: 'Lorem ipsum dolor sit amet', data:{} }
 				]
 			});
 		};
@@ -186,12 +173,12 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](ul li)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				type: 'ol_li_p',
 				isArray: true,
 				content: [
 					{ type: 'text', content: '2. ' },
-					{ type: 'text', content: 'Consectetur adipiscing elit' }
+					{ type: 'text', content: 'Consectetur adipiscing elit', data:{} }
 				]
 			});
 		};
@@ -199,12 +186,12 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](ol li)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				type: 'ol_li_p',
 				isArray: true,
 				content: [
 					{ type: 'text', content: '3. ' },
-					{ type: 'text', content: 'Integer molestie lorem at massa' }
+					{ type: 'text', content: 'Integer molestie lorem at massa', data:{} }
 				]
 			});
 		};
@@ -212,7 +199,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](image)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "p",
 				"isArray": true,
 				"content": [
@@ -227,7 +214,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](code)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "code",
 				"isArray": false,
 				"content": "// 代码啊\n\nconsole.log(123);\n"
@@ -237,13 +224,14 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](p)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "p",
 				"isArray": true,
 				"content": [
 					{
 						"type": "text",
-						"content": "hello"
+						"content": "hello",
+						"data": {}
 					}
 				]
 			});
@@ -252,7 +240,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](table thead)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "table_tr",
 				"isArray": true,
 				"content": [
@@ -275,7 +263,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](table tr)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "table_tr",
 				"isArray": true,
 				"content": [
@@ -298,7 +286,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](table tr)', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "table_tr",
 				"isArray": true,
 				"content": [
@@ -321,7 +309,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](video > source[src])', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "video",
 				"isArray": false,
 				"src": "http://html5demos.com/assets/dizzy.mp4"
@@ -331,7 +319,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](video[src])', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "video",
 				"isArray": false,
 				"src": "http://html5demos.com/assets/dizzy.mp4"
@@ -341,7 +329,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](video > source[src])', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "video",
 				"isArray": false,
 				"src": "http://html5demos.com/assets/dizzy.mp4",
@@ -352,7 +340,7 @@ describe('markdown解析', function(){
 
 	it('renderList[' + (index) + '](video[src])', function(index){
 		return function(){
-			render[index].should.be.eql({
+			renderList[index].should.be.eql({
 				"type": "video",
 				"isArray": false,
 				"src": "http://html5demos.com/assets/dizzy.mp4",
