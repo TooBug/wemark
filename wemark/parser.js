@@ -137,11 +137,7 @@ function parse(md, options){
 						tokensArr.forEach(el => {
 							if (typeof el === 'object') {
 								el.type = parentType + ' wemark_inline_code_' + el.type
-								if (el.content.constructor === Array) {
-									flattenTokens(el.content, result, el.type)
-								} else {
-									result.push(el)
-								}
+								flattenTokens(el.content, result, el.type)
 							} else {
 								const obj = {}
 								obj.type = parentType + ' wemark_inline_code_'
