@@ -129,6 +129,35 @@ function parse(md, options){
 				content = prism.tokenize(content, prism.languages[blockToken.params]);
 				highlight = true;
 			}
+
+			// flatten nested tokens in html
+			if (blockToken.params === 'html') {
+				const flattenTokens = (tokensArr, result = [], parentType = '') => {
+					if (tokensArr.constructor === Array) {
+						tokensArr.forEach(el => {
+							if (typeof el === 'object') {
+								el.type = parentType + ' wemark_inline_code_' + el.type
+								if (el.content.constructor === Array) {
+									flattenTokens(el.content, result, el.type)
+								} else {
+									result.push(el)
+								}
+							} else {
+								const obj = {}
+								obj.type = parentType + ' wemark_inline_code_'
+								obj.content = el
+								result.push(obj)
+							}
+						})
+						return result
+					} else {
+						result.push(tokensArr)
+						return result
+					}
+				}
+				content = flattenTokens(content)
+			}
+
 			return {
 				type: 'code',
 				highlight: highlight,
