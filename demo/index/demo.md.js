@@ -65,6 +65,18 @@ Component({
 });
 \`\`\`
 
+\`\`\`html
+<html>
+	<head>
+		<title>test</title>
+	</head>
+	<body>
+		<div class="hello">hello div</div>
+		<p>hellp p</div>
+	</body>
+</html>
+\`\`\`
+
 hello
 
 |表头1|表头2|表头3|

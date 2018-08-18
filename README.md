@@ -72,7 +72,9 @@ export default {
 
 ### taro
 
-由于taro官方还不支持直接引用自定义小程序组件，因此无法直接使用2.0版本，可以参考基于1.x封装的项目<https://github.com/kapeter/taro-wemark>（非官方）。
+update: taro 1.0.0-beta6已支持引入自定义小程序，但是代码高亮的样式引用有问题。<https://github.com/TooBug/wemark/issues/36>
+
+~~由于taro官方还不支持直接引用自定义小程序组件，因此无法直接使用2.0版本，可以参考基于1.x封装的项目<https://github.com/kapeter/taro-wemark>（非官方）。~~
 
 后续taro更新时，wemark会及时跟进。
 
@@ -114,6 +116,10 @@ MIT
 如果你也使用了 wemark，欢迎提 PR 将自己的小程序加入列表
 
 ## 版本记录
+
+### v2.0.0-beta2 2018-08-18
+
+- 修复HTML代码高亮的bug #39
 
 ### v2.0.0-beta1 2018-07-12
 
