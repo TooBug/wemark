@@ -93,7 +93,8 @@ function parse(md, options){
 		return ret;
 	};
 
-	var getBlockContent = function(blockToken, index){
+	var getBlockContent = function(blockToken, index, firstInLi){
+
 		if(blockToken.type === 'htmlblock'){
 			return getInlineContent(blockToken);
 		}else if(blockToken.type === 'heading_open'){
@@ -112,9 +113,13 @@ function parse(md, options){
 
 			// 处理ol前的数字
 			if(env[env.length - 1] === 'li' && env[env.length - 2] === 'ol'){
+				let prefix = '　';
+				if (firstInLi){
+					prefix = orderNum[listLevel - 1] + '. ';
+				}
 				content.unshift({
 					type:'text',
-					content:orderNum[listLevel - 1] + '. '
+					content: prefix
 				});
 			}
 
@@ -203,7 +208,12 @@ function parse(md, options){
 	};
 
 	tokens.forEach(function(token, index){
-		var blockContent = getBlockContent(token, index);
+		// 标记是否刚进入li，如果刚进入，可以加符号/序号，否则不加
+		var firstInLi = false;
+		if(token.type === 'paragraph_open' && tokens[index-1].type === 'list_item_open'){
+			firstInLi = true;
+		}
+		var blockContent = getBlockContent(token, index, firstInLi);
 		if(!blockContent) return;
 		if(!Array.isArray(blockContent)){
 			blockContent = [blockContent];
