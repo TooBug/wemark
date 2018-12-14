@@ -71,9 +71,17 @@ function parse(md, options){
 						content: '\n'
 					});
 				}else if(token.type === 'strong_open'){
-					env = 'strong';
+					if(env === 'em') {
+						env = 'strong_em';
+					}else {
+						env = 'strong';
+					}
 				}else if (token.type === 'em_open') {
-					env = 'em';
+					if(env === 'strong') {
+						env = 'strong_em';
+					}else {
+						env = 'em';
+					}
 				}else if (token.type === 'link_open') {
 					if(options.link){
 						env = 'link';

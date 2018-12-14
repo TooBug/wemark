@@ -116,6 +116,12 @@
 	padding:0 5px;
 	word-wrap:break-word;
 }
+.wemark_inline_strong_em{
+	font-style: italic;
+	font-weight: bold;
+	padding:0 5px;
+	word-wrap:break-word;
+}
 .wemark_inline_deleted{
 	text-decoration: line-through;
 	padding:0 5px;
