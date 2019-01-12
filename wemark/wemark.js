@@ -28,6 +28,10 @@ Component({
 		richTextNodes: []
     },
     methods: {
+        onTap(e) {
+            this.triggerEvent('click', e)   
+        },
+      
         parseMd(){
 			if (this.data.md) {
 				var parsedData = parser.parse(this.data.md, {
