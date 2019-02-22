@@ -143,29 +143,48 @@ function parse(md, options){
 				highlight = true;
 			}
 
-			// flatten nested tokens in html
-			if (blockToken.params === 'html') {
-				const flattenTokens = (tokensArr, result = [], parentType = '') => {
-					if (tokensArr.constructor === Array) {
-						tokensArr.forEach(el => {
-							if (typeof el === 'object') {
-								el.type = parentType + ' wemark_inline_code_' + el.type
-								flattenTokens(el.content, result, el.type)
-							} else {
-								const obj = {}
-								obj.type = parentType + ' wemark_inline_code_'
-								obj.content = el
-								result.push(obj)
+			const flattenTokens = (tokensArr, result = [], parentType = '') => {
+				if (Array.isArray(tokensArr)) {
+					tokensArr.forEach(el => {
+						if (typeof el === 'object') {
+							// el.type = parentType + ' wemark_inline_code_' + el.type;
+							if(Array.isArray(el.content)){
+								flattenTokens(el.content, result, el.type);
+							}else{
+								flattenTokens(el, result, el.type);
 							}
-						})
-						return result
-					} else {
-						result.push(tokensArr)
-						return result
-					}
+						} else {
+							const obj = {};
+							obj.type = parentType || 'text';
+							// obj.type = parentType + ' wemark_inline_code_';
+							obj.content = el;
+							result.push(obj);
+						}
+					})
+					return result
+				} else {
+					result.push(tokensArr)
+					return result
 				}
-				content = flattenTokens(content)
 			}
+
+			if(highlight){
+				var tokenList = content;
+				content = [];
+				tokenList.forEach((token) => {
+					// let contentListForToken = [];
+					if(Array.isArray(token.content)){
+						content = content.concat(flattenTokens(token.content, [], ''));
+					}else{
+						content.push(token);
+					}
+				});
+			}
+			// flatten nested tokens in html
+			// if (blockToken.params === 'html') {
+				// content = flattenTokens(content)
+			// }
+			console.log(content);
 
 			return {
 				type: 'code',

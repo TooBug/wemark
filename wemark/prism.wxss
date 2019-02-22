@@ -13,7 +13,8 @@ https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javasc
 	 color: slategray;
  }
 
- .wemark_inline_code_punctuation {
+ .wemark_inline_code_punctuation,
+ .wemark_inline_code_interpolation-punctuation {
 	 color: #999;
  }
 
@@ -62,7 +63,8 @@ https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javasc
 
  .wemark_inline_code_regex,
  .wemark_inline_code_important,
- .wemark_inline_code_variable {
+ .wemark_inline_code_variable,
+ .wemark_inline_code_interpolation {
 	 color: #e90;
  }
 
