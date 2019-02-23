@@ -72,11 +72,57 @@ export default {
 
 ### taro
 
-update: taro 1.0.0-beta6已支持引入自定义小程序，但是代码高亮的样式引用有问题。<https://github.com/TooBug/wemark/issues/36>
+在已有的taro项目中进行如下修改：
 
-~~由于taro官方还不支持直接引用自定义小程序组件，因此无法直接使用2.0版本，可以参考基于1.x封装的项目<https://github.com/kapeter/taro-wemark>（非官方）。~~
+1. 将`wemark`放入`src`目录，即`src/wemark`目录
+2. 设置编译时复制`wemark`目录，修改`config/index.js`，在`copy`设置项中增加`wemark`，参考如下：
+	```javascript
+	copy: {
+	  patterns: [
+	    {
+	      from: 'src/wemark',
+	      to: 'dist/wemark',
+	    },
+	  ],
+	  options: {
+	  }
+	},
+	```
+3. 设置taro编译时忽略`remarkable.js`，继续修改`config/index.js`，参考如下：
+	```javascript
+	weapp: {
+	  compile: {
+	    exclude: [
+	      'src/wemark/remarkable.js',
+	    ]
+	  },
+	  ...
+	}
+	```
+4. 在页面中引入和使用`wemark`，例如`src/pages/index/index.js`：
+	```javascript
+	config = {
+	  navigationBarTitleText: '首页',
+	  usingComponents: {
+	    wemark: '../../wemark/wemark'
+	  }
+	}
+	state = {
+	  md: '# heading\n\nText'
+	}
+	//...
+	render () {
+	  return (
+	    <View className='index'>
+	      <wemark md={this.state.md} link highlight type='wemark' />
+	    </View>
+	  )
+	}
+```
 
-后续taro更新时，wemark会及时跟进。
+本项目`taro`目录中包含完整的taro小程序演示项目，可在`wemark`根目录运行`npm run copy`，然后在微信开发者工具中打开使用。
+
+> 特别感谢 @Songkeys 全程跟进taro使用事宜，详情见 <https://github.com/TooBug/wemark/issues/36> 。
 
 ## 附：特性
 

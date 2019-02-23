@@ -5,7 +5,6 @@ var parser = new Remarkable({
 var prism = require('./prism');
 
 function parse(md, options){
-
 	if(!options) options = {};
 	var tokens = parser.parse(md, {});
 
@@ -184,7 +183,7 @@ function parse(md, options){
 			// if (blockToken.params === 'html') {
 				// content = flattenTokens(content)
 			// }
-			console.log(content);
+			// console.log(content);
 
 			return {
 				type: 'code',
