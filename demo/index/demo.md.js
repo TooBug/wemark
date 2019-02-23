@@ -59,9 +59,9 @@ Component({
 				this.setData({
 					parsedData
 				});
-	  }
+			}
+		}
 	}
-  }
 });
 \`\`\`
 
