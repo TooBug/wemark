@@ -1,0 +1,8 @@
+node_modules
+demo/wemark
+mpvue/dist
+mpvue/static
+mpvue/node_modules
+taro/dist
+taro/src/wemark
+taro/node_modules
