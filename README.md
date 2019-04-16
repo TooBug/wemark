@@ -160,6 +160,7 @@ MIT
 - [群里有事](http://www.ifanr.com/minapp/843889) （目测 尝试联系作者确认，没有回应）
 - [麦芽Lite](https://minapp.com/miniapp/10295)
 - [前端小助手](https://user-images.githubusercontent.com/8676711/51069422-cee4f780-1669-11e9-937c-33055af05eef.jpg)（前端早报、周刊等信息）
+- [GitHub Trending Hub](https://github.com/ZhuPeng/mp-githubtrending) (以 Feed 流形式查看 GitHub Trending 仓库集合的工具)
 
 
 如果你也使用了 wemark，欢迎提 PR 将自己的小程序加入列表
