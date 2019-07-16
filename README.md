@@ -119,6 +119,14 @@ export default {
 	  )
 	}
 	```
+5. 在 `global.d.ts` 中添加以下内容（仅 typescript 项目）
+    ``` ts
+    declare namespace JSX {
+      interface IntrinsicElements {
+        wemark: any
+      }
+    }
+	```
 
 本项目`taro`目录中包含完整的taro小程序演示项目，可在`wemark`根目录运行`npm run copy`，然后在微信开发者工具中打开使用。
 
