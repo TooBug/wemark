@@ -3,6 +3,8 @@
 [![Travis](https://img.shields.io/travis/TooBug/wemark/master.svg)](https://travis-ci.org/TooBug/wemark)
 ![MIT](https://img.shields.io/badge/LICENSE-MIT-green.svg)
 
+**小程序已原生支持HTML渲染，基本可替代wemark，推荐使用。本库年久失修，目前处于不维护状态，请谨慎使用。**
+
 ![wemark](./screenshot.png)
 
 ## 背景和功能
